@@ -10,6 +10,7 @@ from discord.ext.commands import (CommandNotFound, BadArgument, MissingRequiredA
 PREFIX = "?"
 OWNER_IDS = [584227289592496129]
 COGS = [p.stem for p in Path(".").glob("./lib/cogs/*.py")]
+IGNORE_EXCEPTIONS = (CommandNotFound, BadArgument)
 
 from ..db import db
 
@@ -20,7 +21,7 @@ class Ready(object):
             setattr(self, cog, False)
 
     def ready_up(self, cog):
-        setattr(self, cog, False)
+        setattr(self, cog, True )
         print(f"{cog} cog ready")
 
     def all_ready(self):
@@ -90,10 +91,7 @@ class Bot(BotBase):
         raise
 
     async def on_command_error(self, ctx, exc):
-        if isinstance(exc, CommandNotFound):
-            pass
-
-        elif isinstance(exc, BadArgument):
+        if any([isinstance(error, exc) for error in IGNORE_EXCEPTIONS]):
             pass
 
         elif isinstance(exc, MissingRequiredArgument):
