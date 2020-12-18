@@ -15,12 +15,12 @@ from ..db import db
 
 
 class Ready(object):
-    def __int__(self):
+    def __init__(self):
         for cog in COGS:
             setattr(self, cog, False)
 
     def ready_up(self, cog):
-        setattr(self, cog, False)
+        setattr(self, cog, True)
         print(f"{cog} cog ready")
 
     def all_ready(self):
@@ -103,7 +103,7 @@ class Bot(BotBase):
             await ctx.send("Unable to send Message")
 
         elif isinstance(exc.original, Forbidden):
-            await ctx.send("I dont have the permission to that...")
+            await ctx.send("I don't have the permission to that...")
 
         else:
             raise exc
