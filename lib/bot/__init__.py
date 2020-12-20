@@ -3,7 +3,7 @@ from pathlib import Path
 
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
-from discord import Intents, HTTPException, Forbidden
+from discord import Intents, Forbidden
 from discord.ext.commands import Bot as BotBase, Context, CommandOnCooldown
 from discord.ext.commands import (CommandNotFound, BadArgument, MissingRequiredArgument)
 
