@@ -1,3 +1,3 @@
 # Discord-Bot
-idk what i'm doing
+idk what was doing
 ### BORING ###
